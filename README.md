@@ -73,7 +73,7 @@ SELECT COUNT(*) FROM layoffs;   -- expect 4,665
 | Duplicates | The same event logged twice from different articles | `ROW_NUMBER()` partitioned by every column except `source` and `date_added`; deleted 2 rows |
 | Location | City names carried a redundant `", Non-U.S."` suffix | Stripped the suffix; rows with no city set to `NULL` |
 | Dates | `date` and `date_added` stored as text (`11/6/2026`) | `STR_TO_DATE(..., '%m/%d/%Y')`, then changed the type to `DATE` |
-| Data types | Every column was `TEXT` | One `ALTER TABLE` to `INT`, `DECIMAL`, `DATE`, `VARCHAR`; indexed `company` and `date` |
+| Data types | Every column was `TEXT` | One `ALTER TABLE` to `INT`, `DECIMAL`, `DATE`, `VARCHAR`
 | Unusable rows | 759 rows had neither `total_laid_off` nor `percentage_laid_off` | Deleted. Rows missing only one of the two were kept |
 
 **Result:** 4,665 → **3,904** analysis-ready rows.
